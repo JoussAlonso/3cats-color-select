@@ -66,7 +66,7 @@ public class ThreeCatsColorLantern extends Activity {
 
 = Demo =
 
-You can find the demo on the market: "3Cats Color Lantern" [https://market.android.com/details?id=com.ThreeCats.ColorLantern]
+You can find the demo on the market: "3Cats Color Lantern" [https://market.android.com/details?id=com.ThreeCats.ColorLantern https://ssl.gstatic.com/android/market/com.ThreeCats.ColorLantern/hi-256-0-70159596a9d6b3fd6fe2a119df713c44764facd3]
 
 = Thanks =
 
