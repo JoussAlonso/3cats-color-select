@@ -1,4 +1,5 @@
 #summary Android Color Select Dialog (HSV palette)
+#labels instructions,code,howto,library
 
 = Overview =
 
