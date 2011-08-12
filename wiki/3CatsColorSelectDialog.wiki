@@ -1,0 +1,26 @@
+#summary Color Select Dialog (HSV palette)
+
+= Overview =
+
+This is a library you can use in your apps to provide the users with a color choice. Hope you will have fun using it.
+Features:
+
+  * HSV palette
+  * orientations
+    * portrait
+    * landscape
+  * fit screen sizes
+    * small, medium (1x)
+    * large (2x)
+    * xlarge/tablets (3x)
+  * strings (localization) free
+
+= Instructions =
+
+= Demo =
+
+You can find the demo on the market: "3Cats Color Lantern"[https://market.android.com/details?id=com.ThreeCats.ColorLantern]
+
+= Thanks =
+
+Goes to Yuku for his Ambil Warna dialog library.
