@@ -5,6 +5,11 @@
 
 This is an Android library you can use in your apps to provide the users with a color choice. Hope you will have fun using it.
 
+= ScreenShots =
+
+  * Portrait (small): [http://3cats-color-select.googlecode.com/files/device-2011-08-12-041430.png]
+  * Landscape (small): [http://3cats-color-select.googlecode.com/files/device-2011-08-12-023942.png]
+
 = Features =
 
   * HSV palette
@@ -66,7 +71,7 @@ public class ThreeCatsColorLantern extends Activity {
 
 = Demo =
 
-You can find the demo on the market: "3Cats Color Lantern" [https://market.android.com/details?id=com.ThreeCats.ColorLantern https://ssl.gstatic.com/android/market/com.ThreeCats.ColorLantern/hi-256-0-70159596a9d6b3fd6fe2a119df713c44764facd3]
+You can find the demo on the market: "3Cats Color Lantern" [https://market.android.com/details?id=com.ThreeCats.ColorLantern]
 
 = Thanks =
 
