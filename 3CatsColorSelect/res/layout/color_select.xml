@@ -11,14 +11,14 @@
 		android:orientation="horizontal"
 		android:padding="@dimen/dimSpacer"
 		>
-	    <com.ThreeCats.ColorSelect.SaturationValueView
+	    <com.threecats.colorselect.SaturationValueView
 	    	android:layout_height="@dimen/dimSquare"
 	    	android:layout_width="@dimen/dimSquare"
            	android:background="#faa"
 	    	android:id="@+id/SatVal"
 			android:layout_margin="@dimen/dimSpacer"
 		    />
-	    <com.ThreeCats.ColorSelect.HueView
+	    <com.threecats.colorselect.HueView
 	    	android:background="#aaf"
 	    	android:id="@+id/Hue"
 	    	android:layout_toRightOf="@+id/SatVal"
