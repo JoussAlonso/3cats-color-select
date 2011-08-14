@@ -72,13 +72,44 @@ public class ColorSelectDialog extends Dialog {
 		viewSatValCursor.setLayoutParams(layoutParams);
 	}
 	
+	/*
+	 * The correct way to manage a dialog is using Activity's onCreateDialog() and onPrepareDialog()
+	 * If you are doing so, then call setStartColor(yourDesiredStartColor) in onPrepareDialog()!
+	 */
+	public void setStartColor(int color) {
+		
+		Log.w("ColorSelectDialog", "setStartColor()");
+		rgb = color;
+		Color.colorToHSV(color, hsv);		
+
+		viewOldColor.setBackgroundColor(0XFF000000 | color);
+		viewNewColor.setBackgroundColor(0XFF000000 | color);
+		
+		ViewTreeObserver vto = view.getViewTreeObserver(); 
+		vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			public void onGlobalLayout() {
+				hueY = hsv[0] * viewHue.getMeasuredHeight() / 360.f;
+				satValX = hsv[1] * viewSatVal.getMeasuredWidth();
+				satValY = (1 - hsv[2]) * viewSatVal.getMeasuredHeight();
+				Log.d("cucu", String.format("hueY: %f; (satValX, satValY): (%f, %f)", hueY, satValX, satValX));
+				viewSatVal.setHue(hsv[0]);
+				setHueCursor();
+				setSatValCursor();
+				Log.w("dim", String.format("getMeasured HxV: hue: (%d, %d) cursor: (%d, %d)", viewHue.getMeasuredWidth(), viewHue.getMeasuredHeight(), viewHueCursor.getMeasuredWidth(), viewHueCursor.getMeasuredHeight()));
+				Log.w("dim", String.format("get HxV: hue: (%d, %d) cursor: (%d, %d)", viewHue.getWidth(), viewHue.getHeight(), viewHueCursor.getWidth(), viewHueCursor.getHeight()));
+				view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+				Log.w("ColorSelectDialog", "OnGlobalLayoutListener()");
+			}
+		});
+
+	}
+	
 	public ColorSelectDialog(Context context, int color, OnColorSelectListener onColorSelectListener) {
 		super(context);
 		
+		Log.w("ColorSelectDialog", "ColorSelectDialog() constructor!");
+
 		this.onColorSelectListener = onColorSelectListener;
-		
-		rgb = color;
-		Color.colorToHSV(color, hsv);
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		Display display = ((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -96,27 +127,8 @@ public class ColorSelectDialog extends Dialog {
 		viewOldColor = (ImageView)findViewById(R.id.OldColor);
 		viewNewColor = (ImageView)findViewById(R.id.NewColor);
 
-		ViewTreeObserver vto = view.getViewTreeObserver(); 
-		vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-			public void onGlobalLayout() {
-				hueY = hsv[0] * viewHue.getMeasuredHeight() / 360.f;
-				satValX = hsv[1] * viewSatVal.getMeasuredWidth();
-				satValY = (1 - hsv[2]) * viewSatVal.getMeasuredHeight();
-				Log.d("cucu", String.format("hueY: %f; (satValX, satValY): (%f, %f)", hueY, satValX, satValX));
-				viewSatVal.setHue(hsv[0]);
-				setHueCursor();
-				setSatValCursor();
-				Log.w("dim", String.format("getMeasured HxV: hue: (%d, %d) cursor: (%d, %d)", viewHue.getMeasuredWidth(), viewHue.getMeasuredHeight(), viewHueCursor.getMeasuredWidth(), viewHueCursor.getMeasuredHeight()));
-				Log.w("dim", String.format("get HxV: hue: (%d, %d) cursor: (%d, %d)", viewHue.getWidth(), viewHue.getHeight(), viewHueCursor.getWidth(), viewHueCursor.getHeight()));
-				view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-				
-			}
-		});
-		
-		
-		viewOldColor.setBackgroundColor(0XFF000000 | color);
-		viewNewColor.setBackgroundColor(0XFF000000 | color);
-		
+		setStartColor(color);
+
 		viewHue.setOnTouchListener(new View.OnTouchListener() {
 			
 			public boolean onTouch(View v, MotionEvent event) {
