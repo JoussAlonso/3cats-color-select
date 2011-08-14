@@ -32,10 +32,11 @@ This is an Android library you can use in your apps to provide the users with a 
   # implement the "onNewColor(int color)" interface (i.e. say what you want to do with the new color that the user just selected in the dialog)
   # enjoy!
 
-== Note! ==
+== Notes! ==
 
-Do not forget that if you want to support *natively* all screens *and* legacy Android 1.5 you need to target Android 1.6 (API 4) and allow Android 1.5 (API 3).
+  # Do not forget that if you want to support *natively* all screens *and* legacy Android 1.5 you need to target Android 1.6 (API 4) and allow Android 1.5 (API 3).
 Targeting Android 1.5 is a common misuse and may result in shitty graphics. More details here: [http://developer.android.com/guide/practices/screens-support-1.5.html]
+  # For correct Dialog management it is recommended to use Activity.showDialog() - in this case you can call ColorSelectDialog.setStartColor() in Activity.onPrepareOptions(). More details here: [http://developer.android.com/guide/topics/ui/dialogs.html#ShowingADialog]
 
 = Example =
 
