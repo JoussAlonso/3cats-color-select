@@ -1,0 +1,76 @@
+# Overview #
+
+This is an Android library you can use in your apps to provide the users with a color choice. Hope you will have fun using it.
+
+# ScreenShots #
+
+  * Portrait (small): ![http://3cats-color-select.googlecode.com/files/device-2011-08-12-041430.png](http://3cats-color-select.googlecode.com/files/device-2011-08-12-041430.png)
+  * Landscape (small): ![http://3cats-color-select.googlecode.com/files/device-2011-08-12-023942.png](http://3cats-color-select.googlecode.com/files/device-2011-08-12-023942.png)
+
+# Features #
+
+  * HSV palette
+  * orientations
+    * portrait
+    * landscape
+  * fit screen sizes
+    * small, medium (1x)
+    * large (2x)
+    * xlarge/tablets (3x)
+  * strings (localization) free
+
+# Instructions #
+
+  1. Eclipse is nice. if in doubt, use it!
+  1. checkout from svn 3CatsColorSelect (see: http://code.google.com/p/3cats-color-select/source/checkout)
+  1. if you want, you can also checkout the demo app 3CatsColorLantern then just compile and run
+  1. in your app's project properties, android, add a library reference to the 3CatsColorSelect library (see: http://developer.android.com/guide/developing/projects/projects-eclipse.html#ReferencingLibraryProject)
+  1. when you need a color choice, create a "ColorSelectDialog" and show it (see example below)
+  1. implement the "onNewColor(int color)" interface (i.e. say what you want to do with the new color that the user just selected in the dialog)
+  1. enjoy!
+
+## Notes! ##
+
+  1. Do not forget that if you want to support **natively** all screens **and** legacy Android 1.5 you need to target Android 1.6 (API 4) and allow Android 1.5 (API 3).
+Targeting Android 1.5 is a common misuse and may result in shitty graphics. More details here: http://developer.android.com/guide/practices/screens-support-1.5.html
+  1. For correct Dialog management it is recommended to use Activity.showDialog() - in this case you can call ColorSelectDialog.setStartColor() in Activity.onPrepareOptions(). More details here: http://developer.android.com/guide/topics/ui/dialogs.html#ShowingADialog
+
+# Example #
+
+```
+// a main activity
+public class ThreeCatsColorLantern extends Activity {
+
+	// contains a changeable color
+	int color = 0xFFFF0000;
+
+	// suppose this function is called when user wants to change the color
+	private void selectColor() {
+		
+		// then we will create a ColorSelectDialog provided by the library
+		// pass the starting selected color on the palette as a parameter
+		currentDialog = new ColorSelectDialog(this, color, new ColorSelectDialog.OnColorSelectListener() {
+			
+			// you have to implement this interface which is called when the user selected a new color
+			// in this case, we take the result and save it in the activity class
+			public void onNewColor(int color) {
+				ThreeCatsColorLantern.this.color = color;
+			}
+		});
+		
+		// now we have a complete Dialog, just show it!
+		currentDialog.show();
+	}
+
+	/// ... your program here
+	
+}
+```
+
+# Demo #
+
+You can find the demo on the market: "3Cats Color Lantern" https://market.android.com/details?id=com.ThreeCats.ColorLantern
+
+# Thanks #
+
+Goes to Yuku for his "Ambil Warna" (android-color-picker) dialog library. I used it in my apps and as a learning example. Good stuff!
